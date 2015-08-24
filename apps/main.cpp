@@ -32,11 +32,17 @@ int main(int argc, char** argv)
   /// Convert it to gray
   cvtColor( src, src_gray, CV_BGR2GRAY );
 
-  /// Reduce the noise so we avoid false circle detection
-  GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2);
 
- //threshold( src_gray,  src_gray, 128, 255, CV_THRESH_BINARY);
-  
+  /// Reduce the noise so we avoid false circle detection
+  GaussianBlur( src_gray, src_gray, Size(9, 9), 9, 2);
+
+    //threshold( src_gray,  src_gray, 0, 40, CV_THRESH_BINARY);
+  adaptiveThreshold(src_gray, src_gray, 250, CV_ADAPTIVE_THRESH_GAUSSIAN_C, CV_THRESH_BINARY, 7, 1);
+
+ //
+  //inRange(src_gray, 100, 220, src_gray);
+  //src_gray = 255 - src_gray;
+
   vector<Vec3f> circles;
 
   /// Apply the Hough Transform to find the circles
@@ -60,7 +66,7 @@ int main(int argc, char** argv)
    }
     
     std::cout<<"number of coins:\t"<<circles.size()<<std::endl;
-    Canny( src_gray, src_gray, 0, 50 );
+    //Canny( src_gray, src_gray, 0, 50 );
   /// Show your results
   imshow( "Hough Circle Transform Demo", src );
   imshow( "Gray scale", src_gray ); 
