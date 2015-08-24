@@ -3,6 +3,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
+#include <cv.h>
 
 using namespace  cv;
 
@@ -34,6 +35,8 @@ int main(int argc, char** argv)
   /// Reduce the noise so we avoid false circle detection
   GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2);
 
+ //threshold( src_gray,  src_gray, 128, 255, CV_THRESH_BINARY);
+  
   vector<Vec3f> circles;
 
   /// Apply the Hough Transform to find the circles
