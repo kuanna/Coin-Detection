@@ -60,7 +60,6 @@ public:
 
         /// Find the rotated rectangles and ellipses for each contour
         vector<RotatedRect> minRect( contours.size() );
-        //vector<RotatedRect> minEllipse( contours.size() );
         for( int i = 0; i < contours.size(); i++ )
         {     
             minRect[i] = minAreaRect( Mat(contours[i]));
