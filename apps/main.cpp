@@ -12,6 +12,8 @@ static const char* keys =
     "{ |  method  |  Hough  |  A method to work with }"
 };
 
+class Threshold;
+
 int main(int argc, char** argv)
 {
     cv::CommandLineParser parser( argc, argv, keys );
