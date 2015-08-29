@@ -9,11 +9,13 @@ public:
     void init( Mat &src )
     {
         image = src;
+		circles.clear();
     }
 
     int count()
     {
         Mat gray_image;
+		imshow( " ", image );
         cvtColor( image, gray_image, CV_BGR2GRAY );
         /// Reduce the noise so we avoid false circle detection
         GaussianBlur( gray_image, gray_image, Size(9, 9), 2, 2 );
@@ -43,7 +45,6 @@ public:
         std::cout<<"number of coins:\t"<<circles.size()<<std::endl;
         /// Show your results
         imshow( "Hough Circle Transform Demo", image );
-        waitKey(0);
     }
     
     cv::vector<cv::Vec3f> write_circles()

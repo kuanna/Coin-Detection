@@ -9,6 +9,7 @@ public:
     void init( Mat &src )
     {
         image = src;
+		minEllipse.clear();
     }
 
     int count()
@@ -51,7 +52,7 @@ public:
 		/// Detect edges using Threshold
 		Mat threshold_output;
         threshold( gray_image, threshold_output, thresh, 255, THRESH_OTSU);
-        imshow("Threshold", threshold_output);
+        //imshow("Threshold", threshold_output);
 
         /// Find contours
 		vector<vector<Point> > contours;
@@ -84,11 +85,10 @@ public:
         {
 			Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
             // ellipse
-			ellipse( image, minEllipse[i], color, 2, 8 );
+			ellipse(image, minEllipse[i], color, 2, 8);
         }
         imshow("Ellipses", image);
         std::cout<< "number of coins:\t" << minEllipse.size() << std::endl;
-        waitKey(0);
 	}
     
     cv::vector<cv::Vec3f> write_circles()
@@ -102,7 +102,6 @@ public:
 	}
 	
 private:
-    vector<Vec3f> circles;
     Mat image;
 	vector<RotatedRect> minEllipse;
 };
